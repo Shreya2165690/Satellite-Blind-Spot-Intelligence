@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Investigation Report</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head><body><main class="report">
+<a href="/">← Back to dashboard</a><p class="eyebrow">SATELLITE BLIND-SPOT INTELLIGENCE</p><h1>Investigation <em>Report</em></h1>
+<p>{{ r.area_name }} · {{ r.years.earlier }} vs {{ r.years.later }}</p>
+{% if r.status == 'completed' %}
+<div class="cards">
+{% for key,label in [('vegetation_percent','Vegetation proxy'),('built_up_proxy_percent','Built-up proxy'),('water_proxy_percent','Water proxy')] %}
+<div class="metric"><small>{{ label }}</small><h2>{{ r.metrics[key].change_pp }} pp</h2><p>{{ r.metrics[key].earlier }}% → {{ r.metrics[key].later }}%</p></div>
+{% endfor %}</div>
+<h2>Findings</h2><ul>{% for f in r.findings %}<li>{{ f }}</li>{% endfor %}</ul>
+{% else %}<p>{{ r.message }}</p>{% endif %}
+<h2>Data quality and limitations</h2><ul>{% for x in r.limitations %}<li>{{ x }}</li>{% endfor %}</ul>
+<p class="muted">Generated {{ r.analysis_id }} · Exploratory analysis, not ground truth.</p><button onclick="window.print()" class="primary">Print / Save as PDF</button></main></body></html>

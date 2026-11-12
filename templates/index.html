@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Satellite Blind-Spot Intelligence</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head><body>
+<header class="top"><div class="brand"><div class="logo">◎</div><div><b>ORBIT / INTELLIGENCE</b><small>Satellite Blind-Spot Intelligence</small></div></div><span class="live"><i></i> SYSTEM READY</span></header>
+<main>
+<section class="hero"><div><p class="eyebrow">SATARA TALUKA · HISTORICAL LAND MONITORING</p><h1>What <em>Changed?</em></h1><p class="sub">Select an area, compare satellite observations and investigate land-cover change between 2016 and 2026.</p></div><div class="hero-mark">SBI<span> / 01</span></div></section>
+<div class="layout">
+<section class="panel map-panel"><div class="panel-head"><div><p class="eyebrow">01 / STUDY AREA</p><h2>Choose your location</h2></div><span class="tag">DRAW A POLYGON</span></div><div id="map"></div><div class="map-foot"><span>Use the polygon tool to select a chunk inside Satara Taluka.</span><button class="ghost" id="clear">Clear selection</button></div></section>
+<aside class="panel controls"><div class="panel-head"><div><p class="eyebrow">02 / TIME WINDOW</p><h2>Compare observations</h2></div></div>
+<label>Earlier observation</label><select id="year1"></select><label>Later observation</label><select id="year2"></select>
+<label>Maximum scene cloud cover <b id="cloudLabel">30%</b></label><input id="cloud" type="range" min="5" max="80" step="5" value="30">
+<label>Area label (optional)</label><input id="areaName" placeholder="e.g. Western Satara study area">
+<div class="actions"><button id="scenes" class="secondary">Find scenes</button><button id="analyze" class="primary">Run comparison <span>↗</span></button></div>
+<p class="hint">Satellite imagery is retrieved from the public Earth Search STAC catalogue. Availability varies by date and area.</p>
+<div id="status" class="status">Draw a polygon on the map to begin.</div>
+</aside>
+</div>
+<section class="panel results" id="results"><div class="panel-head"><div><p class="eyebrow">03 / INVESTIGATION OUTPUT</p><h2>Change intelligence</h2></div><span class="tag">AWAITING ANALYSIS</span></div><div class="empty">Your comparison results will appear here after analysis.</div></section>
+<section class="panel history"><div class="panel-head"><div><p class="eyebrow">04 / DATABASE</p><h2>Recent investigations</h2></div><button class="ghost" id="refresh">Refresh</button></div><div id="history">No saved analyses yet.</div></section>
+<footer>Satellite Blind-Spot Intelligence · Exploratory remote-sensing prototype · Results require validation.</footer>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="{{ url_for('static',filename='app.js') }}"></script></body></html>
